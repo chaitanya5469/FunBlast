@@ -15,10 +15,10 @@ function Header(props) {
       <div className="nav">
         {/* Social media links */}
         <div>
-          <a href="#" className="fa fa-instagram"></a>
-          <a href="#" className="fa fa-twitter"></a>
-          <a href="#" className="fa fa-linkedin"></a>
-          <a href="#" className="fa fa-github"></a>
+          <a href="https://www.instagram.com/chiyan_chaitu/" className="fa fa-instagram"></a>
+          <a href="https://www.twitter.com/2005Chaitu" className="fa fa-twitter"></a>
+          <a href="http://www.linkedin.com/in/chaitanya-krishna-8422622a2" className="fa fa-linkedin"></a>
+          <a href="https://github.com/chaitanya5469" className="fa fa-github"></a>
         </div>
 
         {/* Sign up button or user profile picture */}
