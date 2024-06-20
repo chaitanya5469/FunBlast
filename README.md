@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Fun Blast
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Fun Blast, an engaging web application developed using React and Express for my college project. This application showcases a variety of fun and useful features including a Quiz Game, a Recipes List, a Movie Suggestor, and a Weather Dashboard. Additionally, users can view their profile, which includes their quiz scores. Dive into the details of movies and recipes through the dedicated detail pages.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [APIs Used](#apis-used)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Quiz Game**: Challenge yourself with a variety of quiz questions and track your scores.
+- **Recipes List**: Browse a list of recipes fetched from the Meal DB API.
+- **Movie Suggestor**: Get movie suggestions from the TMDB API.
+- **Weather Dashboard**: Check the current weather using the Open Weather API.
+- **Profile Page**: View your profile and quiz scores.
+- **Movie Detail Page**: Get detailed information about a specific movie.
+- **Recipe Detail Page**: Get detailed information about a specific recipe.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo
 
-### `npm test`
+Check out the demo video of Fun Blast [here](./demo).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To run this project locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/your-username/fun-blast.git
+    cd fun-blast
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install server dependencies:**
+    ```sh
+    cd server
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Install client dependencies:**
+    ```sh
+    cd ../client
+    npm install
+    ```
 
-### `npm run eject`
+4. **Set up environment variables:**
+    - Create a `.env` file in the `server` directory with the following content:
+        ```env
+        MEAL_DB_API_KEY=your_meal_db_api_key
+        TMDB_API_KEY=your_tmdb_api_key
+        OPEN_WEATHER_API_KEY=your_open_weather_api_key
+        ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Start the development server:**
+    - In the `server` directory, run:
+        ```sh
+        npm start
+        ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - In the `client` directory, run:
+        ```sh
+        npm start
+        ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+6. **Open your browser:**
+    - Navigate to `http://localhost:3000` to view the application.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+- **Quiz Game**: Navigate to the Quiz section, answer questions, and view your score on your profile page.
+- **Recipes List**: Browse the recipes, click on any recipe to view its details.
+- **Movie Suggestor**: Browse suggested movies, click on any movie to view its details.
+- **Weather Dashboard**: Enter a city name to get the current weather.
+- **Profile Page**: View your quiz scores and personal information.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## APIs Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **[Meal DB API](https://www.themealdb.com/api.php)**: Provides data for the Recipes List and Recipe Detail Page.
+- **[TMDB API](https://www.themoviedb.org/documentation/api)**: Provides data for the Movie Suggestor and Movie Detail Page.
+- **[Open Weather API](https://openweathermap.org/api)**: Provides data for the Weather Dashboard.
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contributions are welcome! Please follow these steps:
 
-### Analyzing the Bundle Size
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Open a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contact
 
-### Advanced Configuration
+If you have any questions or feedback, feel free to contact me at chaitudec2005@gmail.com *
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for checking out Fun Blast! Enjoy exploring the various features and have fun! 🎉
