@@ -1,0 +1,113 @@
+/* Main container styling */
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: url("../../images/weather_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Search box container */
+.search-box {
+  margin: 20px 0;
+}
+
+/* Input field for city search */
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+/* Search button styling */
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Search button hover effect */
+.search-button:hover {
+  background-color: #218838;
+}
+
+/* Weather information container */
+.weather-info {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: left;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Forecast container */
+.forecast {
+  margin-top: 20px;
+}
+
+/* Flex container for hourly and daily forecasts */
+.hourly,
+.daily {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Individual hour and day forecast boxes */
+.hour,
+.day {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px;
+  width: 120px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+
+  /* Adjust the search input width for mobile screens */
+  .search-input {
+    width: 150px;
+    font-size: 14px;
+  }
+
+  /* Adjust the search button size for mobile screens */
+  .search-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Adjust the weather info container for mobile screens */
+  .weather-info {
+    width: 90%;
+    padding: 15px;
+  }
+
+  /* Adjust the forecast box size for mobile screens */
+  .hour,
+  .day {
+    width: 100px;
+    padding: 8px;
+    margin: 4px;
+  }
+}

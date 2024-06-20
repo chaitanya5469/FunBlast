@@ -1,0 +1,73 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+  
+  .profile-header {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+   
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+   
+   
+  }
+  
+  .profile-header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  
+  .profile-header p {
+    color: #666;
+  }
+  
+  .profile-quizzes {
+    margin-top: 20px;
+  }
+  
+  .profile-quizzes h2 {
+    margin-bottom: 10px;
+    color: black;
+    
+  }
+  
+  .profile-quizzes ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .profile-quizzes li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .quiz-name {
+    font-weight: bold;
+  }
+  
+  .quiz-score {
+    color: #4CAF50;
+  }
+  

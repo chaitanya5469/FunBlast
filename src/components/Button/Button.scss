@@ -1,0 +1,163 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+   
+   @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+   @import url('https://fonts.googleapis.com/css?family=Roboto:100');
+   
+   @mixin button($bcolor,
+   $url,
+   $x1,
+   $y1,
+   $bor,
+   $col) {
+    background: $bcolor;
+    -webkit-mask: url($url);
+    mask: url($url);
+    -webkit-mask-size: $x1 $y1;
+    mask-size: $x1 $y1;
+    border: $bor;
+    color: $col;
+   }
+   
+   .header {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 34px;
+    margin-top: 12vh;
+   }
+   
+   .footer {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    margin-top: 15vh;
+   }
+   
+  
+   .button-container{
+  
+    width: 140px;
+    height: 50px;
+    margin-left: 20px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    transition: 0.5s;
+    font-size: 24px;
+    letter-spacing: 1px;
+    border-radius: 8px;
+   
+    .button {
+     width: 101%;
+     height: 100%;
+     font-family: 'Lato', sans-serif;
+     font-weight: 300;
+     font-size: 16px;
+     letter-spacing: 1px;
+     font-weight: bold;
+     border-radius: 25px;
+     color:white;
+     background-color: #0071dc;
+   
+     @include button(#0071dc, "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+     3000%,
+     100%,
+     none,
+     #fff);
+     cursor: pointer;
+     -webkit-animation: ani2 0.7s steps(29) forwards;
+     animation: ani2 0.7s steps(29) forwards;
+   
+     &:hover {
+      color:white;
+     
+      -webkit-animation: ani 0.7s steps(29) forwards;
+      animation: ani 0.7s steps(29) forwards;
+     }
+    }
+   }
+   
+   
+   .mas {
+      width: 136px;
+      height: 47px;
+       position: absolute;
+       color: black;
+       background-color: beige;
+       text-align: center;
+       margin:auto auto;
+       font-family: 'Lato', sans-serif;
+       font-weight: 300;
+       position: absolute;
+       font-size: 16px;
+       align-items: center;
+       border-radius: 26px;
+       margin-top: 2px;
+       
+    
+       font-weight: bold;
+   
+   }
+   
+   @-webkit-keyframes ani {
+    from {
+     -webkit-mask-position: 0 0;
+     mask-position: 0 0;
+    }
+   
+    to {
+     -webkit-mask-position: 100% 0;
+     mask-position: 100% 0;
+    }
+   }
+   
+   @keyframes ani {
+    from {
+     -webkit-mask-position: 0 0;
+     mask-position: 0 0;
+    }
+   
+    to {
+     -webkit-mask-position: 100% 0;
+     mask-position: 100% 0;
+    }
+   }
+   
+   @-webkit-keyframes ani2 {
+    from {
+     -webkit-mask-position: 100% 0;
+     mask-position: 100% 0;
+    }
+   
+    to {
+     -webkit-mask-position: 0 0;
+     mask-position: 0 0;
+    }
+   }
+   
+   @keyframes ani2 {
+    from {
+     -webkit-mask-position: 100% 0;
+     mask-position: 100% 0;
+    }
+   
+    to {
+     -webkit-mask-position: 0 0;
+     mask-position: 0 0;
+    }
+   }
+   
+   a{
+     color:#00ff95;
+   }
+   
+  
+   
+  
+   
+   

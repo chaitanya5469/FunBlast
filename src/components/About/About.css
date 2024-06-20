@@ -1,0 +1,83 @@
+.section {
+    display: grid;
+    background-color: #000;
+    grid-template-columns: 1fr 1fr;
+    height: 400px;
+    width: 100%;
+}
+
+.section .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section img {
+    aspect-ratio: 1;
+    width: 40%;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.section .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    line-height: 150%;
+    color: white;
+    font-family: Poppins, sans-serif;
+}
+
+.section .content h3 {
+    position: relative;
+    left: 20px;
+    color: white;
+}
+
+.section .content ul li {
+    padding: 5px;
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+    .section {
+        grid-template-columns: 1fr; /* Single column layout for mobile */
+        height: auto; /* Adjust height for mobile */
+        padding: 20px; /* Add padding for better spacing */
+    }
+
+    .section .image {
+        margin-bottom: 20px; /* Add space between image and content */
+    }
+
+    .section img {
+        width: 60%; /* Adjust image width for mobile */
+    }
+
+    .section .content h3 {
+        left: 0; /* Reset left positioning */
+        text-align: center; /* Center align heading for mobile */
+        width: 100%;
+    }
+
+    .section .content {
+        align-items: center; /* Center align content for mobile */
+        text-align: center; /* Center align text for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .section img {
+        width: 80%; /* Further adjust image width for very small screens */
+    }
+
+    .section .content h3 {
+        font-size: 1.5rem; /* Adjust font size for very small screens */
+    }
+
+    .section .content ul li {
+        font-size: 1rem; /* Adjust list item font size for very small screens */
+    }
+}
