@@ -25,7 +25,7 @@ Welcome to Fun Blast, an engaging web application developed using React and Expr
 
 ## Demo
 
-Check out the demo video of Fun Blast [here](./demo).
+Check out the demo video of Fun Blast [here](./demo.mp4).
 
 ## Installation
 
