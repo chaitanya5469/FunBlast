@@ -14,6 +14,10 @@ import MovieDetail from './components/Movie/MovieDetail.jsx';
 import Weather from './components/Weather/Weather.jsx';
 import ProfilePage from './components/ProfilePage';
 
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
+if(process.env.NODE_ENV==="production")disableReactDevTools();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthProvider>
