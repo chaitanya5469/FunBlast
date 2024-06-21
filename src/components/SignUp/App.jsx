@@ -8,6 +8,12 @@ import { useNavigate } from "react-router-dom";
 function App() {
   const { isLoggedIn, logout } = useAuth();
   const navigate=useNavigate();
+
+  if(process.env.NODE_ENV===""){
+    window.alert("Google authentication works. But changes do not reflect due to improper cookies management at render. And I dont have money for custom domain :(")
+  }
+  window.alert("Google authentication works. But changes do not reflect due to improper cookies management at render. And I dont have money for custom domain :(")
+
   useEffect(() => {
     // Redirect to home if the user is not logged in
     if (isLoggedIn) {

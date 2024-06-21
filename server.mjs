@@ -14,7 +14,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Initialize express app
 const app = express();
-const port = 5000||process.env.PORT;
+const port = 7000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const BASE_URL="https://api.openweathermap.org/data/2.5";
