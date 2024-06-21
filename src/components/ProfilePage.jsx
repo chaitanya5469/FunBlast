@@ -22,13 +22,13 @@ function ProfilePage() {
     }
 
     // Fetch user details
-    fetch(`http://localhost:5000/user/${id}`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/user/${id}`)
       .then(response => response.json())
       .then(data => setUser(data))
       .catch(error => console.error('Error fetching user:', error));
 
     // Fetch quizzes
-    fetch(`http://localhost:5000/user/${id}/quizzes`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/user/${id}/quizzes`)
       .then(response => response.json())
       .then(data => setQuizzes(data))
       .catch(error => console.error('Error fetching quizzes:', error));

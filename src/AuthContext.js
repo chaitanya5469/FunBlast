@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   // Function to check authentication status
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/check-auth', { withCredentials: true });
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/check-auth`, { withCredentials: true });
       setIsLoggedIn(response.data.authenticated);
       setUser(response.data.user);
     } catch (error) {
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   // Function to handle logout
   const logout = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/logout', { withCredentials: true });
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/logout`, { withCredentials: true });
       setIsLoggedIn(false);
       setUser(null);
     } catch (error) {

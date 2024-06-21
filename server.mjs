@@ -10,6 +10,7 @@ import axios from "axios";
 import cookieParser from "cookie-parser";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@supabase/supabase-js';
 
 // Initialize express app
 const app = express();
@@ -22,13 +23,19 @@ env.config();
 
 
 
+// Initialize Supabase client
+const supabaseUrl = process.env.SUPABASE_DATABASE_URL; // Replace with your Supabase URL
+const supabaseKey=process.env.SUPABASE_KEY; // Replace with your Supabase service key
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+
 
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:3000', // Adjust this to your React app's URL
+  origin: process.env.CLIENT_URL, // Adjust this to your React app's URL
   credentials: true, // Enable credentials for CORS
 }));
 app.use(cookieParser());
@@ -50,14 +57,14 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'build')));
 
 // PostgreSQL database connection
-const db = new pg.Client({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
-});
-db.connect();
+//const db = new pg.Client({
+//user: process.env.PG_USER,
+//host: process.env.PG_HOST,
+//database: process.env.PG_DATABASE,
+//password: process.env.PG_PASSWORD,
+//port: process.env.PG_PORT,
+//});
+//db.connect();
 
 // Logout endpoint
 app.get("/logout", (req, res, next) => {
@@ -73,7 +80,7 @@ app.get("/logout", (req, res, next) => {
 
 // Redirect to login page
 app.get("/login", (req, res) => {
-  res.redirect("http://localhost:3000/login");
+  res.redirect(`${process.env.CLIENT_URL}/login`);
 });
 
 // Google OAuth authentication
@@ -86,7 +93,8 @@ app.get("/auth/google/login",
   (req, res) => {
     // Successful authentication, redirect home
     console.log("Redirecting to home");
-    res.redirect("http://localhost:3000/");
+  res.redirect(`${process.env.CLIENT_URL}`);
+ 
   }
 );
 
@@ -178,13 +186,18 @@ app.post('/submit-quiz', async (req, res) => {
   const { user_id, score, category } = req.body;
 
   try {
-    const result = await db.query(
-      'INSERT INTO quizzes (user_id, score, quiz_time, category) VALUES ($1, $2, CURRENT_TIMESTAMP, $3) RETURNING *',
-      [user_id, score, category]
-    );
-    res.status(201).json(result.rows[0]);
+    const { data, error } = await supabase
+      .from('quizzes')
+      .insert([{ user_id, score, quiz_time: new Date().toISOString(), category }])
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    res.status(201).json(data);
   } catch (error) {
-    console.error('Error inserting quiz score:', error);
+    console.error('Error inserting quiz score:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -239,15 +252,22 @@ app.get('/movie/:id', async (req, res) => {
 app.get('/user/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const userResult = await db.query('SELECT id, name, email, dp FROM users WHERE id = $1', [id]);
-    console.log(userResult.rows[0]);
-    if (userResult.rows.length > 0) {
-      res.json(userResult.rows[0]);
+    const { data, error } = await supabase
+      .from('users')
+      .select('id, name, email, dp')
+      .eq('id', id);
+
+    if (error) {
+      throw error;
+    }
+
+    if (data.length > 0) {
+      res.json(data[0]);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error('Error fetching user:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -256,10 +276,18 @@ app.get('/user/:id', async (req, res) => {
 app.get('/user/:id/quizzes', async (req, res) => {
   try {
     const { id } = req.params;
-    const quizResult = await db.query('SELECT quiz_time, score, category FROM quizzes WHERE user_id = $1', [id]);
-    res.json(quizResult.rows);
+    const { data, error } = await supabase
+      .from('quizzes')
+      .select('quiz_time, score, category')
+      .eq('user_id', id);
+
+    if (error) {
+      throw error;
+    }
+
+    res.json(data);
   } catch (error) {
-    console.error('Error fetching quizzes:', error);
+    console.error('Error fetching quizzes:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -268,21 +296,40 @@ app.get('/user/:id/quizzes', async (req, res) => {
 passport.use("google", new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:5000/auth/google/login",
+  callbackURL: `${process.env.REACT_APP_SERVER_URL}/auth/google/login`,
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
 }, async (accessToken, refreshToken, profile, cb) => {
-  console.log(profile);
+  console.log('Response: ' + JSON.stringify(profile));
   try {
-    const result = await db.query("SELECT * FROM users WHERE email=$1", [profile.email]);
-    if (result.rows.length == 0) {
-      const user = await db.query("INSERT INTO users(email, password, name, dp) VALUES($1, $2, $3, $4)", [profile.email, "google", profile.given_name, profile.picture]);
-      return cb(null, user.rows[0]);
+    const { data: users, error } = await supabase
+      .from('users')
+      .select()
+      .eq('email',  profile.emails[0].value);
+      console.log("Data Uploaded")
+
+    if (error) {
+      console.log(error.message);
+    
+    }
+
+    if (users.length === 0) {
+      const { data: newUser, error: insertError } = await supabase
+        .from('users')
+        .insert({ email: profile.emails[0].value, password: "google", name: profile.given_name, dp: profile.picture })
+        .single();
+
+      if (insertError) {
+        console.log(insertError.message);
+      }
+
+      return cb(null, newUser);
     } else {
-      return cb(null, result.rows[0]);
+      return cb(null, users[0]);
     }
   } catch (err) {
     return cb(err);
   }
+
 }));
 
 passport.serializeUser((user, cb) => {

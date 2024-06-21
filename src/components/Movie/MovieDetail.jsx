@@ -13,7 +13,7 @@ const MovieDetail = () => {
   // Function to fetch movie details
   const fetchMovie = async (movieId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/movie/${movieId}`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/movie/${movieId}`);
       setMovie(response.data);
     } catch (error) {
       console.log('Error fetching movie details:', error);

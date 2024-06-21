@@ -14,7 +14,7 @@ const Movies = () => {
   // Fetch categories from the API
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/categories');
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/categories`);
       const categoryOptions = response.data.map((category) => ({
         value: category.id,
         label: category.name,
@@ -28,7 +28,7 @@ const Movies = () => {
   // Fetch movies based on the selected category
   const fetchMovies = async (category) => {
     try {
-      const response = await axios.get('http://localhost:5000/movies', {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/movies`, {
         params: { category },
       });
       setMovies(response.data);

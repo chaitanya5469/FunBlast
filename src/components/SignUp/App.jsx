@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header";
 import "../../css/quiz.css";
 import GoogleButton from "react-google-button";
+import { useAuth } from "../../AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const { isLoggedIn, logout } = useAuth();
+  const navigate=useNavigate();
+  useEffect(() => {
+    // Redirect to home if the user is not logged in
+    if (isLoggedIn) {
+      console.log('User is not logged in, navigating to home');
+      navigate("/");
+      return;
+    }
+  });
+
+
   return (
     <div className="body">
       <Header />
@@ -13,7 +27,7 @@ function App() {
         <div className="google">
           <GoogleButton
             onClick={() => {
-              window.location.href = 'http://localhost:5000/auth/google';
+              window.location.href = `${process.env.REACT_APP_SERVER_URL}/auth/google`;
             }}
           />
         </div>

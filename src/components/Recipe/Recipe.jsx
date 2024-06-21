@@ -7,12 +7,14 @@ import '../../css/index.css';
 function Recipe() {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+  console.log(serverUrl);
 
   // Fetch recipes from the API
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/recipes', { withCredentials: true });
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/recipes`, { withCredentials: true });
         setRecipes(response.data.meals);
       } catch (error) {
         console.log('Error fetching recipes:', error);

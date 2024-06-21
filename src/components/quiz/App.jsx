@@ -101,7 +101,7 @@ function App() {
     // If the user is logged in, upload the score
     if (user != null) {
       try {
-        await axios.post('http://localhost:5000/submit-quiz', {
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/submit-quiz`, {
           user_id: user.id,
           score: newScore,
           category: options[categoryID - 9].label
